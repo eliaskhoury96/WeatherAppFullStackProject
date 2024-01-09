@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Weather</title>
+    <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: #f5f6f7;">
+    <div class="container">
+        <h1 class="mt-3">City Weather</h1>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                 <div id="city-details-container" class="mb-3"></div>
+                <div id="add-city-container" class="mb-3">
+                    <h2>Add a New City</h2>
+                    <div class="input-group">
+                        <input type="text" id="newCityName" class="form-control" placeholder="Enter City Name">
+                       
+      
+                         <button onclick="countercity()" class="btn btn-primary">Search</button> 
+                    
+                         
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div id="cities-list-container"></div>
+            </div>
+        </div>
+    </div>
+  
+    
+<script id="cities-template" type="text/x-handlebars-template">
+    {{#each cities}}
+        <div class="card bg-dark text-white" style="border-radius: 40px;">
+            <div class="bg-image" style="border-radius: 35px;">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/draw1.webp"
+                    class="card-img" alt="weather" />
+                <div class="mask" style="background-color: rgba(190, 216, 232, .5);"></div>
+            </div>
+            <div class="card-img-overlay text-dark p-2">
+                <h4 class="mb-0">{{name}}</h4>
+                <p class="display-2 my-3">{{ temperature}}°C</p>
+                <button class="btn btn-success save-button" onclick="saveCity('{{name}}')">Save</button>
+                <button class="btn btn-danger remove-button" onclick="deleteCity('{{name}}')">Remove</button> 
+                  <img src="https://openweathermap.org/img/wn/{{ conditionPic}}.png" />
+                <h5>{{condition}}</h5>
+
+            </div>
+        </div>
+    {{/each}}
+</script>
+
+    
+    
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="./bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="model.js"></script>
+    <script src="render.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
